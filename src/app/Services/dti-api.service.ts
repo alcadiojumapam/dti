@@ -13,12 +13,28 @@ export class DtiApiService {
   
   constructor() { }
 
+  listaTerminales(){
+    return this.http.get<EmpleadoConsulta[]>(this.apiUrl);
+  }
+
   listaEmpleados(){
     return this.http.get<EmpleadoConsulta[]>(this.apiUrl);
   }
 
-  obtenerEmpleados(clave_Trabajador: number){
-    return this.http.get<EmpleadoConsulta[]>(`${this.apiUrl}`);
+  obtenerEmpleados(clave_Trabajador:number){
+    return this.http.get<EmpleadoConsulta[]>(`${this.apiUrl}/${clave_Trabajador}`);
+  }
+
+  registrarEmpleado(objeto:EmpleadoConsulta){
+    return this.http.post<Response>(this.apiUrl,objeto);
+  }
+
+  editarEmpleado(objeto:EmpleadoConsulta){
+    return this.http.put<Response>(this.apiUrl,objeto);
+  }
+
+  eliminarEmpleados(clave_Trabajador:number){
+    return this.http.delete<Response>(`${this.apiUrl}/${clave_Trabajador}`);
   }
 
 }
