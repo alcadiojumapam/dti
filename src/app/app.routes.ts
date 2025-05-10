@@ -28,7 +28,7 @@ export const routes: Routes = [
                 component:ListadoEmpleadoComponent
             },
             {
-                path:'asistencia/registrar-empleado/:clave_Trabajador',
+                path:'asistencia/registrar-empleado/:id',
                 component:RegistrarEmpleadoComponent
             }
         ]

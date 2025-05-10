@@ -37,4 +37,8 @@ export class DtiApiService {
     return this.http.delete<Response>(`${this.apiUrl}/${clave_Trabajador}`);
   }
 
+  eliminar(id:number){
+    return this.http.delete<ResponseAPI>(`${this.apiUrl}/${id}`);
+  }
+
 }
