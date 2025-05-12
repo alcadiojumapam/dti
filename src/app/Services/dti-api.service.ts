@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { appsettings } from '../Settings/appsettings';
 import { EmpleadoConsulta } from '../Models/EmpleadoConsulta';
+import { ResponseAPI } from '../Models/ResponseAPI';
 
 @Injectable({
   providedIn: 'root'
@@ -26,15 +27,15 @@ export class DtiApiService {
   }
 
   registrarEmpleado(objeto:EmpleadoConsulta){
-    return this.http.post<Response>(this.apiUrl,objeto);
+    return this.http.post<ResponseAPI>(this.apiUrl,objeto);
   }
 
   editarEmpleado(objeto:EmpleadoConsulta){
-    return this.http.put<Response>(this.apiUrl,objeto);
+    return this.http.put<ResponseAPI>(this.apiUrl,objeto);
   }
 
   eliminarEmpleados(clave_Trabajador:number){
-    return this.http.delete<Response>(`${this.apiUrl}/${clave_Trabajador}`);
+    return this.http.delete<ResponseAPI>(`${this.apiUrl}/${clave_Trabajador}`);
   }
 
 }
