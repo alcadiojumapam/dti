@@ -19,12 +19,14 @@ export class ListadoEmpleadoComponent {
   private empleadoServicio = inject(DtiApiService);
   public listaEmpleados:EmpleadoConsulta[]=[];
   public displayedColumns: string[] = ['id','clave_Trabajador','nombre','area_Name','accion'];
+  public responseConsulta:ResponseConsulta;
 
   obtenerEmpleados(){
     this.empleadoServicio.listaEmpleados().subscribe({
       next:(data)=>{
         if(data.length > 0){
-          this.listaEmpleados  = data;
+          this.responseConsulta = data;
+          this.listaEmpleados  = this.responseConsulta.respose;
         }
       },
       error:(err)=>{
@@ -35,7 +37,7 @@ export class ListadoEmpleadoComponent {
 
   constructor(private router:Router){
 
-    this.obtenerEmpleados();
+    //this.obtenerEmpleados();
   }
 
   nuevo(){
