@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { DtiApiService } from '../../../Services/dti-api.service';
 import { EmpleadoConsulta } from '../../../Models/EmpleadoConsulta';
 import { Router } from '@angular/router';
+import { Trabajador } from '../../../Models/ApiResponse';
 
 @Component({
   selector: 'app-listado-empleado',
@@ -17,17 +18,15 @@ import { Router } from '@angular/router';
 })
 export class ListadoEmpleadoComponent {
   private empleadoServicio = inject(DtiApiService);
-  public listaEmpleados:EmpleadoConsulta[]=[];
+  public listaEmpleados:Trabajador[]=[];
   public displayedColumns: string[] = ['id','clave_Trabajador','nombre','area_Name','accion'];
-  public responseConsulta:ResponseConsulta;
-
+  
   obtenerEmpleados(){
     this.empleadoServicio.listaEmpleados().subscribe({
       next:(data)=>{
-        if(data.length > 0){
-          this.responseConsulta = data;
-          this.listaEmpleados  = this.responseConsulta.respose;
-        }
+        //if(data.length > 0){
+          this.listaEmpleados  = data.respose;
+        //}
       },
       error:(err)=>{
         console.log(err.message)
@@ -37,7 +36,7 @@ export class ListadoEmpleadoComponent {
 
   constructor(private router:Router){
 
-    //this.obtenerEmpleados();
+    this.obtenerEmpleados();
   }
 
   nuevo(){

@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { appsettings } from '../Settings/appsettings';
 import { EmpleadoConsulta } from '../Models/EmpleadoConsulta';
 import { ResponseAPI } from '../Models/ResponseAPI';
+import { ApiResponse } from '../Models/ApiResponse';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +20,14 @@ export class DtiApiService {
     return this.http.get<EmpleadoConsulta[]>(this.apiUrl);
   }
 
-  listaEmpleados(){
-    return this.http.get<EmpleadoConsulta[]>(`${this.apiUrl}/consultarempleados`);
+  listaEmpleados(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.apiUrl}/consultarempleados`);
   }
+
+  obtenerDatos(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.apiUrl);
+  }
+
 
   obtenerEmpleados(clave_Trabajador:number){
     return this.http.get<EmpleadoConsulta[]>(`${this.apiUrl}/${clave_Trabajador}`);

@@ -1,4 +1,0 @@
-export interface ResponseConsulta{
-    mesage: string;
-    respose: EmpleadoConsulta[];
-}
