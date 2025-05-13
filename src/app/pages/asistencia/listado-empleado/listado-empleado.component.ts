@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
+
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
@@ -32,7 +33,10 @@ export class ListadoEmpleadoComponent {
     })
   }
 
-  constructor(private router:Router){}
+  constructor(private router:Router){
+
+    this.obtenerEmpleados();
+  }
 
   nuevo(){
     this.router.navigate(['/registrar-empleado',0]);
@@ -43,17 +47,14 @@ export class ListadoEmpleadoComponent {
   }
 
   eliminar(objeto:EmpleadoConsulta){
-    if(confirm("Desea eliminar el empleado" + objeto.nombre)){
-      this.empleadoServicio.eliminarEmpleados(objeto.id).subscribe({
+    if(confirm("Desea eliminar el empledo " + objeto.nombre)){
+      this.empleadoServicio.eliminarEmpleados(objeto.clave_Trabajador).subscribe({
         next:(data)=>{
           if(data.isSuccess){
             this.obtenerEmpleados();
           }else{
             alert("no se pudo eliminar")
           }
-        },
-        error:(err)=>{
-          console.log(err.message)
         }
       })
     }

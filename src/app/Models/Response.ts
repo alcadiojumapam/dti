@@ -1,5 +1,5 @@
 export interface Response{
-    isSuccess:boolean;
+    isSucces: boolean;
     id: number;
     codigo: number;
     mensaje: string;
