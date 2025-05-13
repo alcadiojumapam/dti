@@ -19,7 +19,7 @@ export class DtiApiService {
   }
 
   listaEmpleados(){
-    return this.http.get<EmpleadoConsulta[]>(this.apiUrl);
+    return this.http.get<EmpleadoConsulta[]>(`${this.apiUrl}/consultarempleados`);
   }
 
   obtenerEmpleados(clave_Trabajador:number){
